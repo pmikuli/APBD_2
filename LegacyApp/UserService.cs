@@ -1,26 +1,35 @@
-﻿using System;
+﻿using LegacyApp.Core.DAL.Repositories;
+using LegacyApp.Core.DAL.Services;
+using LegacyApp.Core.Interfaces;
+using LegacyApp.Core.Validators;
+using LegacyApp.Models;
+using System;
 
 namespace LegacyApp
 {
     public class UserService
     {
+
+        private IInputValidator _inputValidator;
+
+        public UserService()
+        {
+            _inputValidator = new InputValidator();
+        }
+
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            if (!_inputValidator.ValidateName(firstName, lastName))
             {
                 return false;
             }
 
-            if (!email.Contains("@") && !email.Contains("."))
+            if (!_inputValidator.ValidateEmail(email))
             {
                 return false;
             }
 
-            var now = DateTime.Now;
-            int age = now.Year - dateOfBirth.Year;
-            if (now.Month < dateOfBirth.Month || (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)) age--;
-
-            if (age < 21)
+            if (!_inputValidator.ValidateAge(dateOfBirth))
             {
                 return false;
             }

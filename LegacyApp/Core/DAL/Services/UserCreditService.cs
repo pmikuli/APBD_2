@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace LegacyApp
+namespace LegacyApp.Core.DAL.Services
 {
     public class UserCreditService : IDisposable
     {
@@ -18,7 +18,7 @@ namespace LegacyApp
                 {"Doe", 3000},
                 {"Kwiatkowski", 1000}
             };
-        
+
         public void Dispose()
         {
             //Simulating disposing of resources
