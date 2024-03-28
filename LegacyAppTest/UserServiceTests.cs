@@ -2,10 +2,10 @@ using LegacyApp;
 
 namespace LegacyAppTest
 {
-    public class UnitTest1
+    public class UserServiceTests
     {
         [Fact]
-        public void Test1()
+        public void AddUser_DoesntAdd_WhenNoNameWasProvided()
         {
             // Arrange
             var service = new UserService();
@@ -18,7 +18,7 @@ namespace LegacyAppTest
         }
 
         [Fact]
-        public void InvalidEmailNotAccepted()
+        public void AddUser_DoesntAdd_WhenUserProvidesInvalidEmail()
         {
             var service = new UserService();
 
@@ -28,7 +28,7 @@ namespace LegacyAppTest
         }
 
         [Fact]
-        public void TooYoungNotAccepted()
+        public void AddUser_DoesntAdd_WhenUserIsTooYoung()
         {
             var service = new UserService();
 
