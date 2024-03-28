@@ -11,13 +11,8 @@ namespace LegacyApp.Core.Validators
         }
 
         public bool ValidateEmail(string email)
-        {
-            if (!email.Contains("@") && !email.Contains("."))
-            {
-                return false;
-            }
-
-            return true;
+        { 
+            return email.Contains("@") || email.Contains(".");
         }
 
         public bool ValidateAge(DateTime dateOfBirth)
@@ -26,12 +21,7 @@ namespace LegacyApp.Core.Validators
             int age = now.Year - dateOfBirth.Year;
             if (now.Month < dateOfBirth.Month || (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)) age--;
 
-            if (age < 21)
-            {
-                return false;
-            }
-
-            return true;
+            return age >= 21;
         }
     }
 }
